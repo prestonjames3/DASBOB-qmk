@@ -1,6 +1,3 @@
-// Copyright 2022 grooovebob (@grooovebob)
-// SPDX-License-Identifier: GPL-2.0-or-later
-
 #pragma once
 
 #define MATRIX_ROWS 8
@@ -51,11 +48,20 @@
 // The default is 40
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
-// Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 200
-#define PERMISSIVE_HOLD
-#define IGNORE_MOD_TAP_INTERRUPT
-#define TAPPING_FORCE_HOLD
+#define TAPPING_TERM 205 //235//275  //*****
+#define PERMISSIVE_HOLD  //*****
+// #define IGNORE_MOD_TAP_INTERRUPT  //*****
+// #define HOLD_ON_OTHER_KEY_PRESS  //*****/*****
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY  //*****/*****
+// #define TAPPING_FORCE_HOLD  //*****
+// #define TAPPING_FORCE_HOLD_PER_KEY  //*****
+#define QUICK_TAP_TERM TAPPING_TERM  // NOTE: QUICK_TAP_TERM = TAPPING_TERM is the default  //*****/*****
+#define QUICK_TAP_TERM_PER_KEY  //*****/*****
+//#define RETRO_TAPPING  //*****/*****
+ //Normally: Holding and releasing a dual function key without pressing another key will result in nothing happening.
+ //With Retro Tapping: Releasing a dual function key without pressing another will send the original keycode,
+ //even if it is outside the tapping term.
+
 #define USB_VBUS_PIN 19
 #define AUDIO_PWM_DRIVER PWMD2
 #define AUDIO_PWM_CHANNEL RP2040_PWM_CHANNEL_B

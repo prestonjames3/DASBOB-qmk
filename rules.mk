@@ -1,5 +1,3 @@
-
-
 # Bootloader selection
 BOOTLOADER = rp2040
 
@@ -23,3 +21,7 @@ WPM_ENABLE = yes
 LTO_ENABLE = yes
 SERIAL_DRIVER = vendor
 AUDIO_DRIVER = pwm_hardware
+
+# OLED_DRIVER_ENABLE  = yes
+TAP_DANCE_ENABLE = yes
+DYNAMIC_TAPPING_TERM_ENABLE = yes
