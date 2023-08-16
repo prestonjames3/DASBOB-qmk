@@ -36,7 +36,8 @@ enum td_keycodes {
   TD_ALT_GUI,
   TD_LSFT_TG3,
   TD_RSFT_TG3,
-  TD_EQL_NOTEQL
+  TD_EQL_NOTEQL//,
+  // TD_LGUI_EXLM
 };
 
 // Define a type containing as many tapdance states as you need
@@ -79,6 +80,8 @@ void rsft_tg3_finished(tap_dance_state_t *state, void *user_data);
 void rsft_tg3_reset(tap_dance_state_t *state, void *user_data);
 void eql_noteql_finished(tap_dance_state_t *state, void *user_data);
 void eql_noteql_reset(tap_dance_state_t *state, void *user_data);
+// void lgui_exlm_finished(tap_dance_state_t *state, void *user_data);
+// void lgui_exlm_reset(tap_dance_state_t *state, void *user_data);
 
 
 
@@ -101,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_DEFAULT] = LAYOUT_split_3x5_3(
                 //,-------------------------------------------------------------------.                    ,-------------------------------------------------------------------.
-                            KC_Q,                  KC_W,    KC_E,    KC_R,    KC_T,                            KC_Y,    KC_U,    KC_I,    KC_O,                  KC_P,
+                            MT(MOD_LGUI, KC_Q),    KC_W,    KC_E,    KC_R,    KC_T,                            KC_Y,    KC_U,    KC_I,    KC_O,    MT(MOD_RGUI, KC_P),
                 //|--------+----------------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+----------------------+--------|
                             MT(MOD_LCTL, KC_A),    KC_S,    KC_D,    KC_F,    KC_G,                            KC_H,    KC_J,    KC_K,    KC_L,  TD(TD_CTL_QUOT_SCLN),
                 //|--------+----------------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+----------------------+--------|
@@ -117,11 +120,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ONE] = LAYOUT_split_3x5_3(
                 //,-------------------------------------------------------------------.                    ,-------------------------------------------------------------------.
-                            KC_1,                  KC_2,    KC_3,    KC_4,    KC_5,                            KC_6,    KC_7,    KC_8,    KC_9,                  KC_0,
+                            MT(MOD_LGUI, KC_1),    KC_2,    KC_3,    KC_4,    KC_5,                            KC_6,    KC_7,    KC_8,    KC_9,    MT(MOD_RGUI, KC_0),
                 //|--------+----------------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+----------------------+--------|
-                            TD(TD_CTL_TAB_CAPS),   KC_PLUS, KC_MINS, KC_UNDS, KC_EQL,                         KC_F5, KC_BTN1, KC_BTN2,  PLOOPY, MT(MOD_RCTL, KC_SCLN),
+                            TD(TD_CTL_TAB_CAPS),   KC_PLUS, KC_MINS, KC_UNDS, KC_EQL,                       XXXXXXX, KC_BTN1, KC_BTN2,  PLOOPY,  MT(MOD_RCTL, KC_DQT),
                 //|--------+----------------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+----------------------+--------|
-                            KC_LGUI,               C(KC_X), C(KC_V), C(KC_C), C(KC_SLSH),                   C(KC_R), C(KC_C), C(KC_V), C(KC_X), MT(MOD_RGUI, KC_BSLS),
+                            KC_LALT,               C(KC_X), C(KC_C), C(KC_V), C(KC_SLSH),                A(S(KC_B)), C(KC_V), C(KC_C), C(KC_X), MT(MOD_RALT, KC_QUES),
                 //|--------+----------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+----------------------+--------|
                              TG(3),               _______,                MT(MOD_LSFT, KC_ENT),    MT(MOD_RSFT, KC_BSPC),               _______,               TG(3)
                           // TG(3),               _______,                MT(MOD_LSFT, KC_ENT),    MT(MOD_RSFT, KC_ENT),                _______,               TG(3)
@@ -132,12 +135,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_TWO] = LAYOUT_split_3x5_3(
                 //,-------------------------------------------------------------------.                    ,-------------------------------------------------------------------.
-                            KC_EXLM,               KC_AT,   KC_HASH, KC_DLR,   SLSH_ASTR,                 ASTR_SLSH, KC_PERC, KC_CIRC, KC_AMPR,               KC_ASTR,
+                            MT(MOD_LGUI, KC_1),    KC_AT,   KC_HASH, KC_DLR,  SLSH_ASTR,                  ASTR_SLSH, KC_PERC, KC_CIRC, KC_AMPR,               KC_ASTR,
                 // XXXXXXX, KC_ESC,                KC_GRV,  XXXXXXX, AFIT_COL, KC_LBRC,                     KC_RBRC, KC_PGUP, KC_PGDN, KC_MINS,                KC_EQL, _______,
                 //|--------+----------------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+----------------------+--------|
-                            MT(MOD_LCTL, KC_ESC),  KC_GRV,  S(A(KC_F1)), C(A(KC_TAB)), KC_LPRN,             KC_RPRN, KC_LEFT,   KC_UP, KC_DOWN,               KC_RGHT,
+                            MT(MOD_LCTL, KC_ESC),  KC_GRV,  C(KC_Z), C(A(KC_TAB)), KC_LPRN,                 KC_RPRN, KC_LEFT,   KC_UP, KC_DOWN,               KC_RGHT,
                 //|--------+----------------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+----------------------+--------|
-                            TD(TD_ALT_GUI),        CLEAR_ALL, PASTE_VAL, KC_F2,  KC_LBRC,                   KC_RBRC, KC_PGUP, KC_PGDN, KC_WH_U,               KC_WH_D,
+                            TD(TD_ALT_GUI),        XXXXXXX, C(KC_Y), KC_F2,   KC_LBRC,                      KC_RBRC, KC_PGUP, KC_PGDN, KC_WH_U,               KC_WH_D,
                 // _______, KC_LALT,               KC_LGUI, XXXXXXX, C(KC_SLSH), SLSH_ASTR,               ASTR_SLSH, KC_WH_L, KC_WH_U, KC_WH_D,               KC_WH_R, _______,
                 //|--------+----------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+----------------------+--------|
                      _______,                 TG(3),                      MT(MOD_LSFT, KC_ENT),    MT(MOD_RSFT, KC_BSPC),                     TG(3),                 _______
@@ -150,12 +153,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_THREE] = LAYOUT_split_3x5_3(
                 //,-------------------------------------------------------------------.                    ,-------------------------------------------------------------------.
-                            KC_F1,                 KC_F2,   KC_F3,   KC_F4,   KC_F5,                          KC_F6,   KC_F7,   KC_F8,   KC_F9,                KC_F10,
+                            MT(MOD_LGUI, KC_F1),   KC_F2,   KC_F3,   KC_F4,   KC_F5,                          KC_F6,   KC_F7,   KC_F8,   KC_F9,  MT(MOD_RGUI, KC_F10),
                 //|--------+----------------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+----------------------+--------|
-                            MT(MOD_LCTL, KC_F11),  KC_F12,  F_PAINT, AFIT_COL, XXXXXXX,                      KC_INS, XXXXXXX, XXXXXXX, XXXXXXX,               KC_RCTL,
+                            MT(MOD_LCTL, KC_F11),  KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,               KC_RCTL,
                 //|--------+----------------------+--------+--------+--------+--------|                    |--------+--------+--------+--------+----------------------+--------|
                 // XXXXXXX, XXXXXXX,               XXXXXXX, XXXXXXX, ONEPASS, WRKPASS,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,               XXXXXXX, XXXXXXX,
-                            KC_LALT,               KC_LGUI, XXXXXXX, ONEPASS, WRKPASS,                      DT_PRNT,   DT_UP, DT_DOWN, KC_RGUI,               KC_RALT,
+                            KC_LALT,               XXXXXXX, XXXXXXX, ONEPASS, WRKPASS,                      DT_PRNT,   DT_UP, DT_DOWN, XXXXXXX,               KC_RALT,
                 //|--------+----------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+----------------------+--------|
                                          _______,               _______,       TD(TD_LSFT_TG3),    TD(TD_RSFT_TG3),       _______,               _______
                          //              _______,               _______,               _______,    _______,               _______,               _______
@@ -602,6 +605,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
+    // case MT(MOD_LGUI, KC_EXLM):
+    // case MT(MOD_RSFT, RSFT(KC_1)):
+    case MT(MOD_LGUI, KC_1):
+      if (record->tap.count && record->event.pressed) {
+        if      (IS_LAYER_ON(2)) {
+          tap_code16(RSFT(KC_1));
+        } else {
+          tap_code16(KC_1);
+        }
+        return false;        // Return false to ignore further processing of key
+      }
+      break;
+
 
   }
   // We return true to indicate to the caller that the key press we just processed should continue to be processed as normal
@@ -611,37 +627,100 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
 
+// bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+//     switch (keycode) {
+//         case MT(MOD_LCTL, KC_A):
+//             return false;  // Do not select the hold action when another key is pressed.
+//         case MT(MOD_LCTL, KC_ESC):
+//             return false;
+//         case MT(MOD_LCTL, KC_F11):
+//             return false;
+//         case MT(MOD_RCTL, KC_SCLN):
+//             return false;
+//         case MT(MOD_RGUI, KC_SLSH):
+//             return false;
+//         case MT(MOD_LALT, KC_Z):
+//             return false;
+
+//         // TD(TD_CTL_QUOT_SCLN)
+//         // TD(TD_CTL_TAB_CAPS)
+//         // TD(TD_ALT_GUI)
+//         // TD(TD_ALT_SLSH_BSLS)
+
+//         default:
+//             return true;  // Immediately select the hold action when another key is pressed.
+
+//         // LT(1, KC_BSPC)
+//         // LT(2, KC_ENT)
+//         // MT(MOD_LSFT, KC_SPC)
+//         // MT(MOD_LSFT, KC_ENT)
+//         // MT(MOD_RSFT, KC_SPC)
+//         // MT(MOD_RSFT, KC_BSPC)
+//         // MT(MOD_LSFT, LSFT(KC_ENT))
+//         // MT(MOD_RSFT, RSFT(KC_BSPC))
+
+//         // TD(TD_LSFT_TG3)
+//         // TD(TD_RSFT_TG3)
+//     }
+// }
+
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case MT(MOD_LCTL, KC_A):
+        case MT(MOD_LGUI, KC_Q):
             return false;  // Do not select the hold action when another key is pressed.
+        case MT(MOD_RGUI, KC_P):
+            return false;
+        case MT(MOD_LCTL, KC_A):
+            return false;
+        // TD(TD_CTL_QUOT_SCLN)
+        case MT(MOD_LALT, KC_Z):
+            return false;
+        // TD(TD_ALT_SLSH_BSLS)
+
+
+        case MT(MOD_LGUI, KC_1):  //***************
+            return false;
+        case MT(MOD_RGUI, KC_0):
+            return false;
+        // TD(TD_CTL_TAB_CAPS)
+        case MT(MOD_RCTL, KC_DQT):
+            return false;
+        case MT(MOD_RALT, KC_QUES):
+            return false;
+
+
+        /// case MT(MOD_LGUI, KC_EXLM):  //******************************
+        ///     return false;
+        //// TD(TD_LGUI_EXLM)
         case MT(MOD_LCTL, KC_ESC):
+            return false;
+        // TD(TD_ALT_GUI)
+
+
+        case MT(MOD_LGUI, KC_F1):
+            return false;
+        case MT(MOD_RGUI, KC_F10):
             return false;
         case MT(MOD_LCTL, KC_F11):
             return false;
-        case MT(MOD_RCTL, KC_SCLN):
-            return false;
-        case MT(MOD_RGUI, KC_SLSH):
-            return false;
-        case MT(MOD_LALT, KC_Z):
-            return false;
 
-        // TD(TD_CTL_QUOT_SCLN)
-        // TD(TD_CTL_TAB_CAPS)
-        // TD(TD_ALT_GUI)
-        // TD(TD_ALT_SLSH_BSLS)
 
         default:
             return true;  // Immediately select the hold action when another key is pressed.
 
-        // LT(1, KC_BSPC)
-        // LT(2, KC_ENT)
-        // MT(MOD_LSFT, KC_SPC)
-        // MT(MOD_LSFT, KC_ENT)
-        // MT(MOD_RSFT, KC_SPC)
-        // MT(MOD_RSFT, KC_BSPC)
-        // MT(MOD_LSFT, LSFT(KC_ENT))
-        // MT(MOD_RSFT, RSFT(KC_BSPC))
+        // LT(2, KC_ENT)  //xxx
+        // LT(1, KC_BSPC)  //xxx
+        // MT(MOD_LSFT, KC_SPC)  //xxx
+        // MT(MOD_RSFT, KC_SPC)  //xxx
+
+
+        // MT(MOD_LSFT, KC_ENT)  //xxx
+        // MT(MOD_RSFT, KC_BSPC)  //xxx
+
+
+        // MT(MOD_LSFT, KC_ENT)  //xxx
+        // MT(MOD_RSFT, KC_BSPC)  //xxx
+
 
         // TD(TD_LSFT_TG3)
         // TD(TD_RSFT_TG3)
@@ -988,6 +1067,42 @@ void eql_noteql_reset(tap_dance_state_t *state, void *user_data) {
     }
     xtap_state.state = TD_NONE;
 }
+
+// void lgui_exlm_finished(tap_dance_state_t *state, void *user_data) {
+//     xtap_state.state = cur_dance(state);
+//     switch (xtap_state.state) {
+//         case TD_SINGLE_TAP: register_code(KC_RSFT); register_code(KC_1); break;
+//         case TD_SINGLE_HOLD: register_code(KC_LGUI); break;
+//         // case TD_SINGLE_HOLD:
+//         //     register_mods(MOD_BIT(KC_lALT)); // For a layer-tap key, use `layer_on(_MY_LAYER)` here
+//         //     break;
+//         // case TD_DOUBLE_TAP: register_code16(KC_EXLM); register_code(KC_EQL); break;
+//         // case TD_DOUBLE_HOLD: register_code(KC_LGUI); break;
+//         // case TD_DOUBLE_HOLD:
+//         //     register_mods(MOD_BIT(KC_lGUI)); // For a layer-tap key, use `layer_on(_MY_LAYER)` here
+//         //     break;
+//         // In order to type `xx` when typing fast, the next character will have to be hit within the `TAPPING_TERM`.
+//         // case TD_DOUBLE_SINGLE_TAP: tap_code(KC_X); register_code(KC_X); break;
+//         default: break;
+//     }
+// }
+// void lgui_exlm_reset(tap_dance_state_t *state, void *user_data) {
+//     switch (xtap_state.state) {
+//         case TD_SINGLE_TAP: unregister_code(KC_1); unregister_code(KC_RSFT); break;
+//         case TD_SINGLE_HOLD: unregister_code(KC_LGUI); break;
+//         // case TD_SINGLE_HOLD:
+//         //     unregister_mods(MOD_BIT(KC_lALT)); // For a layer-tap key, use `layer_off(_MY_LAYER)` here
+//         //     break;
+//         // case TD_DOUBLE_TAP: unregister_code16(KC_EXLM); unregister_code(KC_EQL); break;
+//         // case TD_DOUBLE_HOLD: unregister_code(KC_LGUI); break;
+//         // case TD_DOUBLE_HOLD:
+//         //     unregister_mods(MOD_BIT(KC_lGUI)); // For a layer-tap key, use `layer_off(_MY_LAYER)` here
+//         //     break;
+//         // case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_X); break;
+//         default: break;
+//     }
+//     xtap_state.state = TD_NONE;
+// }
 
 
 // Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
